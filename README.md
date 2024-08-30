@@ -41,9 +41,9 @@ Furthermore, this project includes a comprehensive comparison of the performance
    - This model is a single-stage DDPM trained to generate 256x256 resolution images directly from noise. It incorporates the Swin Transformer within the UNet architecture to enhance the model’s ability to capture image details and does not have any other attention mechanisms.
 
 
-## **Evaluation Metrics and Results**
+## **Evaluation Metrics**
 
-### **Super-Resolution Models Evaluation**
+### **Phase 1: Super-Resolution Models Evaluation**
 
 **Metrics:**
 - **PSNR (Peak Signal-to-Noise Ratio):** Measures the overall quality of the upscaled images by comparing the signal's power to the noise's power. Higher PSNR values indicate better image quality with less noise.
@@ -53,13 +53,13 @@ Furthermore, this project includes a comprehensive comparison of the performance
 - **AG (Average Gradient):** Quantifies the sharpness of images by measuring the gradient of pixel intensities, with higher values indicating sharper images.
 - **VIF (Visual Information Fidelity):** Evaluates the amount of visual information preserved in the upscaled images relative to the reference images.
 
-### **Generative Models Evaluation**
+### **Phase 2: Generative Models Evaluation**
 
 **Metrics:**
 - **FID (Frechet Inception Distance):** Measures the distance between the distributions of generated and real images, with lower values indicating that the generated images are closer to the real data.
 - **IS (Inception Score):** Assesses both the quality and diversity of the generated images. Higher IS values indicate that the generated images are both diverse and recognizable.
 
-### **Results**
+## **Results**
 
 #### **Phase 1: Super-Resolution Model Evaluation**
 
