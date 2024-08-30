@@ -3,6 +3,14 @@
 ## **Project Overview**
 In healthcare, medical imaging is crucial for accurate diagnosis, treatment planning, and monitoring of disease progression. Generating high-quality medical images for training machine learning models is challenging due to data privacy concerns and the need for large annotated datasets. This project proposes the development of a novel transformer-enhanced Super Resolution Denoising Diffusion Probabilistic Model (SRDDPM) to synthesize high-quality 2D medical images. Leveraging transformer technologies within SRDDPMs aims to improve the stability and quality of generated images compared to existing methods like GANs and VAEs. The model will be trained and validated using multiple medical imaging datasets to ensure its ability to generate medically accurate and diverse synthetic images. The expected outcome is a robust generative model capable of producing high-resolution medical images, significantly aiding in training AI systems without compromising data privacy.
 
+## **Contributions**
+This project presents a Cascaded Super-Resolution DDPM consisting of three DDPM architectures: one designed to generate a lower-resolution image and the subsequent two cascaded to progressively upscale the image to a high resolution. The model is trained on the MRNet dataset, focusing on knee MRI images related to musculoskeletal abnormalities. The model is enhanced by utilizing a UNet architecture with a Swin-transformer block in the UNet's bottleneck layer for improved local and global feature learning, which is crucial for high-resolution medical images.
+
+Furthermore, this project includes a comprehensive comparison of the performance of the cascaded Super-Resolution DDPM with other approaches. It compares:
+- The cascaded Super-Resolution DDPM against a single-stage DDPM architecture trained directly on images of the same size.
+- The cascaded Super-Resolution DDPM with and without the Swin-transformer blocks in the UNet architecture.
+- The Super-Resolution models with interpolation methods to test the quality of upscaled images.
+
 ## **Dataset Information**
 - **Dataset**: Stanford MRNet
 - **Description**: The dataset consists of 1,370 knee MRI exams from Stanford University Medical Center, including 1,104 exams with ACL and meniscal tear labels manually extracted from clinical reports.
@@ -32,8 +40,32 @@ pip install torch torchvision torchmetrics pandas pillow matplotlib numpy scipy 
 ## **Usage**
 This project includes multiple Jupyter notebooks, each designed for a specific purpose, such as loading datasets, training models, and generating synthetic images. To get started, you can run the `Pipelinemain_MRNet.ipynb` notebook, which guides you through importing and running the model for image generation.
 
-## **Models and Data**
-The project includes various models, each designed for specific tasks within the image synthesis pipeline:
+## **Models and Architectures**
+
+### **Proposed Architecture**
+This project employs a Cascaded Super-Resolution DDPM approach with a total of three models: the initial DDPM generates 64x64 images, and two subsequent Super-Resolution models (SR1 and SR2) upscale the images to 128x128 and 256x256, respectively.
+
+- **64x64 Image Generator (Base DDPM):** 
+  This model uses a UNet architecture with sinusoidal positional embeddings and self-attention mechanisms to generate 64x64 images from noise. The Swin Transformer is integrated into the bottleneck layer to capture both local and global dependencies.
+  
+  ![UNet for 64x64 Generator](images/unet_64x64.png)
+  
+- **Super-Resolution UNet (SR1 and SR2):** 
+  The SR1 model upscales images from 64x64 to 128x128, and the SR2 model further upscales them to 256x256. These models do not include self-attention or cross-attention layers, focusing instead on the UNet architecture to refine image details effectively.
+
+  ![Super-Resolution UNet](images/sr_unet.png)
+
+- **Pipeline Overview:** 
+  The following image depicts the overall pipeline of the proposed Cascaded Super-Resolution DDPM. It starts with the base DDPM generating low-resolution images, which are progressively upscaled using the SR1 and SR2 models.
+
+  ![Proposed Architecture Pipeline](images/pipeline.png)
+
+### **Single-Stage 256x256 DDPM**
+This model is a single-stage DDPM trained to generate 256x256 resolution images directly from noise. It incorporates the Swin Transformer within the UNet architecture to enhance the model’s ability to capture image details.
+
+### **SRDDPM Without Swin Transformer**
+This model follows the same cascaded approach but excludes the Swin Transformer from the architecture, reducing computational complexity while still performing the image upscaling tasks.
+
 
 - **SWIN Transformer**
 - **SRDDPM**
