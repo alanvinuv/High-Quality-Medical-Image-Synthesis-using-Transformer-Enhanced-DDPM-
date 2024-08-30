@@ -1,7 +1,7 @@
 # **High-Quality Medical Image Synthesis Using Transformer-Enhanced Denoising Diffusion Models**
 
 ## **Project Overview**
-In healthcare, medical imaging is crucial for accurate diagnosis, treatment planning, and monitoring of disease progression. Generating high-quality medical images for training machine learning models is challenging due to data privacy concerns and the need for large annotated datasets. This project proposes the development of a transformer-enhanced Cascaded Super Resolution Denoising Diffusion Probabilistic Model (SRDDPM) to synthesize high-quality 2D medical images. Leveraging transformer technologies within SRDDPMs aims to improve the stability and quality of generated images compared to existing methods like GANs and VAEs. The model will be trained and validated using the MRNet knee MRI dataset from Stanford University Medical Center. The expected outcome is a robust generative model capable of producing high-resolution medical images, significantly aiding in training AI systems without compromising data privacy.
+In Healthcare, Medical Imaging is crucial for accurate diagnosis, treatment planning, and monitoring of disease progression. Generating high-quality medical images for training Machine Learning models is challenging due to data privacy concerns and the need for large annotated datasets. This project proposes the development of a Transformer-enhanced Cascaded Super Resolution Denoising Diffusion Probabilistic Model (SRDDPM) to synthesize high-quality 2D medical images. Leveraging a SWIN transformer within SRDDPMs aims to improve the stability and quality of generated images compared to existing methods like GANs and VAEs. The model will be trained and validated using the MRNet knee MRI dataset from Stanford University Medical Center. The expected outcome is a robust generative model capable of producing high-quality medical images, significantly aiding in training AI systems without compromising data privacy.
 
 ## **Contributions**
 This project presents a Cascaded Super-Resolution DDPM consisting of three DDPM architectures: one designed to generate a lower-resolution image and the subsequent two cascaded to progressively upscale the image to a high resolution. The model is trained on the MRNet dataset, focusing on knee MRI images related to musculoskeletal abnormalities. The model is enhanced by utilizing a UNet architecture with a Swin-transformer block in the UNet's bottleneck layer for improved local and global feature learning, which is crucial for high-resolution medical images.
@@ -18,29 +18,27 @@ Furthermore, this project includes a comprehensive comparison of the performance
 
 ## **Models and Architectures**
 
-### **Proposed Architecture**
-This project employs a Cascaded Super-Resolution DDPM approach with a total of three models: the initial DDPM generates 64x64 images, and two subsequent Super-Resolution models (SR1 and SR2) upscale the images to 128x128 and 256x256, respectively.
+1. **Proposed Architecture**
+   - **64x64 Image Generator (Base DDPM):** 
+     This model uses a UNet architecture with sinusoidal positional embeddings, self-attention, and cross-attention mechanisms to generate 64x64 images from noise. The Swin Transformer is integrated into the bottleneck layer to capture both local and global dependencies.
+     
+     ![UNet for 64x64 Generator](images/unet_64x64.png)
+     
+   - **Super-Resolution UNet (SR1 and SR2):** 
+     The SR1 model upscales images from 64x64 to 128x128, and the SR2 model further upscales them to 256x256. These models do not include self-attention or cross-attention layers but have the Swin Transformer in the Bottleneck of UNet to refine image details effectively.
 
-- **64x64 Image Generator (Base DDPM):** 
-  This model uses a UNet architecture with sinusoidal positional embeddings and self-attention mechanisms to generate 64x64 images from noise. The Swin Transformer is integrated into the bottleneck layer to capture both local and global dependencies.
-  
-  ![UNet for 64x64 Generator](images/unet_64x64.png)
-  
-- **Super-Resolution UNet (SR1 and SR2):** 
-  The SR1 model upscales images from 64x64 to 128x128, and the SR2 model further upscales them to 256x256. These models do not include self-attention or cross-attention layers, focusing instead on the UNet architecture to refine image details effectively.
+     ![Super-Resolution UNet](images/sr_unet.png)
 
-  ![Super-Resolution UNet](images/sr_unet.png)
+   - **Pipeline Overview:** 
+     The following image depicts the overall pipeline of the proposed Cascaded Super-Resolution DDPM. It starts with the base DDPM generating low-resolution images, which are progressively upscaled using the SR1 and SR2 models.
 
-- **Pipeline Overview:** 
-  The following image depicts the overall pipeline of the proposed Cascaded Super-Resolution DDPM. It starts with the base DDPM generating low-resolution images, which are progressively upscaled using the SR1 and SR2 models.
+     ![Proposed Architecture Pipeline](images/pipeline.png)
 
-  ![Proposed Architecture Pipeline](images/pipeline.png)
+2. **SRDDPM Without Swin Transformer**
+   - This model follows the same cascaded approach but excludes the Swin Transformer from the architecture, reducing computational complexity while still performing the image upscaling tasks.
 
-### **Single-Stage 256x256 DDPM**
-This model is a single-stage DDPM trained to generate 256x256 resolution images directly from noise. It incorporates the Swin Transformer within the UNet architecture to enhance the model’s ability to capture image details.
-
-### **SRDDPM Without Swin Transformer**
-This model follows the same cascaded approach but excludes the Swin Transformer from the architecture, reducing computational complexity while still performing the image upscaling tasks.
+3. **Single-Stage 256x256 DDPM**
+   - This model is a single-stage DDPM trained to generate 256x256 resolution images directly from noise. It incorporates the Swin Transformer within the UNet architecture to enhance the model’s ability to capture image details and does not have any other attention mechanisms.
 
 
 ## **Evaluation Metrics and Results**
@@ -63,21 +61,22 @@ This model follows the same cascaded approach but excludes the Swin Transformer 
 
 ### **Evaluation Summary**
 
-The evaluation of the models revealed several key insights:
+#### **Phase 1: Super-Resolution Model Evaluation**
 
-- **SRDDPM Model with Swin Transformer:**
-  The SRDDPM model, particularly when enhanced with the Swin Transformer, showed a significant ability to generate high-quality medical images. The inclusion of the Swin Transformer in the UNet architecture allowed the model to effectively capture both local and global dependencies, resulting in better image quality as measured by PSNR, SSIM, and FSIM. The model also produced sharper images (as indicated by AG) and maintained a good balance between noise reduction and detail preservation. However, this improvement came at the cost of increased computational complexity and training time.
+![Phase 1 Evaluation](path_to_phase_1_image.png)
 
-- **SRDDPM Model without Swin Transformer:**
-  When the Swin Transformer was excluded, the SRDDPM still performed admirably, but there was a noticeable decline in image quality across most metrics, particularly in FSIM and LPIPS, indicating that the absence of the Swin Transformer affected the model's ability to maintain perceptual and structural fidelity. This version of the model was more computationally efficient but at the expense of some image sharpness and detail.
+The **Cascaded SR model with Swin Transformer** excelled in image quality, achieving the highest PSNR (27.1742) and superior edge preservation (AG: 0.2634) compared to other models. Its perceptual quality, indicated by a low LPIPS score (0.1753), was also strong, though it required the longest training time (6 hours). The **Cascaded SR model without Swin Transformer** performed well with a slightly higher PSNR (27.6868) but showed reduced perceptual accuracy, making it more computationally efficient with only 3 hours of training. **Bicubic and Lanczos interpolation methods** were effective in preserving fine details but fell short in overall structural and perceptual accuracy compared to the SR models.
 
-- **Single-Stage 256x256 DDPM:**
-  The single-stage DDPM model, trained directly to generate 256x256 images, outperformed the SRDDPM in certain areas, particularly in terms of FID and IS. This model was able to produce sharper and more detailed images, excelling in high-frequency areas. However, the single-stage DDPM required substantial computational resources and longer training times, making it less efficient compared to the cascaded approach of the SRDDPM.
+#### **Phase 2: Generative Model Evaluation**
 
-- **Overall Comparison:**
-  While the single-stage DDPM showed slightly better performance in terms of image sharpness and overall quality, the SRDDPM, especially with the Swin Transformer, demonstrated considerable promise. The cascaded approach of the SRDDPM offers scalability and control over different resolution tasks, making it a versatile option for various medical imaging applications. The SRDDPM's ability to generate high-quality images with lower computational requirements highlights its potential as a more practical solution for generating medical images at different resolutions.
+![Phase 2 Evaluation](path_to_phase_2_image.png)
 
-The results underscore the importance of architectural enhancements like the Swin Transformer in improving the quality of generated images, particularly in the context of super-resolution tasks. Future work could explore further enhancements to the SRDDPM, such as the reintroduction of self-attention and cross-attention mechanisms, to bridge the gap in performance with the single-stage DDPM while maintaining computational efficiency.
+The **SRDDPM with Swin Transformer** demonstrated strong structural refinement (FID: 85.9790, IS: 1.7970 ± 0.06) but required 9 hours of training. The **Single-Stage 256x256 DDPM** outperformed the SRDDPM in FID (61.9056) and IS (1.9876 ± 0.2776), producing sharper, more detailed images, though at the cost of greater computational resources (8 hours). The **SRDDPM without Swin Transformer** showed the weakest performance, with a higher FID (166.7589) and noisier images, requiring 5 hours of training, which highlights the Swin Transformer's importance in achieving higher-quality outputs.
+
+#### **Conclusion**
+
+While the Single-Stage DDPM leads in image quality, the SRDDPM with Swin Transformer offers scalability and versatility, making it a promising candidate for medical imaging tasks. With further enhancements, such as advanced attention mechanisms, the SRDDPM could potentially surpass the Single-Stage DDPM in overall performance, balancing quality with computational efficiency.
+
 
 
 ## **Libraries used in the Project:**
@@ -116,18 +115,18 @@ pip install torch torchvision pandas pillow matplotlib numpy scipy tqdm
 The project is organized as follows:
 
 - **Evaluation Code**: Contains generated images and comparison images between SR models and interpolation methods.
-- **DDPM_256x256**: Code for the 256x256 DDPM model and its savepoint.
+- **DDPM_256x256**: Code for the training of 256x256 DDPM model and its savepoint.
 - **Model_Savepoints**: Directory containing savepoints for all trained models.
 - **Mrnet**: Contains a subset of dataset files and some preprocessed slices (located in `train_slices_raw` and `valid_slices_raw`).
 - **Training Images**: Includes images generated by the model during training.
 - **Jupyter Notebooks**:
-  - `mrnet_load_trial.ipynb`: For loading and preprocessing the dataset.
-  - `DDPM_64x64Generator_(NOSWIN).ipynb`: DDPM without SWIN transformer in its UNet.
-  - `DDPM_64x64Generator.ipynb`: DDPM with SWIN transformer in its UNet.
-  - `SR1-(64-128).ipynb`: SR DDPM for 64x64 to 128x128 upscaling with SWIN transformer in its UNet.
-  - `SR1-(64-128)(NoSWIN).ipynb`: SR DDPM for 64x64 to 128x128 upscaling without SWIN transformer in its UNet.
-  - `SR2-(128-256).ipynb`: SR DDPM for 128x128 to 256x256 upscaling with SWIN transformer in its UNet.
-  - `SR2-(128-256)(NOSWIN).ipynb`: SR DDPM for 128x128 to 256x256 upscaling without SWIN transformer in its UNet.
+  - `mrnet_load_trial.ipynb`: Performed loading and preprocessing of the MRNet dataset.
+  - `DDPM_64x64Generator.ipynb`: Training of the DDPM with SWIN transformer in its UNet.
+  - `DDPM_64x64Generator_(NOSWIN).ipynb`: Training of the DDPM without SWIN transformer in its UNet.
+  - `SR1-(64-128).ipynb`: Training of the SR DDPM for 64x64 to 128x128 upscaling with SWIN transformer in its UNet.
+  - `SR1-(64-128)(NoSWIN).ipynb`: Training of the SR DDPM for 64x64 to 128x128 upscaling without SWIN transformer in its UNet.
+  - `SR2-(128-256).ipynb`: Training of the SR DDPM for 128x128 to 256x256 upscaling with SWIN transformer in its UNet.
+  - `SR2-(128-256)(NOSWIN).ipynb`: Training of the SR DDPM for 128x128 to 256x256 upscaling without SWIN transformer in its UNet.
   - `Pipelinemain_MRNet.ipynb`: Main pipeline notebook for loading saved models and generating images.
 
 ## **Training Information**
