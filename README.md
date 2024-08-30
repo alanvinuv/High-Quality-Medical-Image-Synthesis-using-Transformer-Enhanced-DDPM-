@@ -1,7 +1,7 @@
 # **High-Quality Medical Image Synthesis Using Transformer-Enhanced Denoising Diffusion Models**
 
 ## **Project Overview**
-In healthcare, medical imaging is crucial for accurate diagnosis, treatment planning, and monitoring of disease progression. Generating high-quality medical images for training machine learning models is challenging due to data privacy concerns and the need for large annotated datasets. This project proposes the development of a novel transformer-enhanced Super Resolution Denoising Diffusion Probabilistic Model (SRDDPM) to synthesize high-quality 2D medical images. Leveraging transformer technologies within SRDDPMs aims to improve the stability and quality of generated images compared to existing methods like GANs and VAEs. The model will be trained and validated using multiple medical imaging datasets to ensure its ability to generate medically accurate and diverse synthetic images. The expected outcome is a robust generative model capable of producing high-resolution medical images, significantly aiding in training AI systems without compromising data privacy.
+In healthcare, medical imaging is crucial for accurate diagnosis, treatment planning, and monitoring of disease progression. Generating high-quality medical images for training machine learning models is challenging due to data privacy concerns and the need for large annotated datasets. This project proposes the development of a transformer-enhanced Cascaded Super Resolution Denoising Diffusion Probabilistic Model (SRDDPM) to synthesize high-quality 2D medical images. Leveraging transformer technologies within SRDDPMs aims to improve the stability and quality of generated images compared to existing methods like GANs and VAEs. The model will be trained and validated using the MRNet knee MRI dataset from Stanford University Medical Center. The expected outcome is a robust generative model capable of producing high-resolution medical images, significantly aiding in training AI systems without compromising data privacy.
 
 ## **Contributions**
 This project presents a Cascaded Super-Resolution DDPM consisting of three DDPM architectures: one designed to generate a lower-resolution image and the subsequent two cascaded to progressively upscale the image to a high resolution. The model is trained on the MRNet dataset, focusing on knee MRI images related to musculoskeletal abnormalities. The model is enhanced by utilizing a UNet architecture with a Swin-transformer block in the UNet's bottleneck layer for improved local and global feature learning, which is crucial for high-resolution medical images.
@@ -15,30 +15,6 @@ Furthermore, this project includes a comprehensive comparison of the performance
 - **Dataset**: Stanford MRNet
 - **Description**: The dataset consists of 1,370 knee MRI exams from Stanford University Medical Center, including 1,104 exams with ACL and meniscal tear labels manually extracted from clinical reports.
 - **Reference**: Bien, Nicholas, et al. "Deep-learning-assisted diagnosis for knee magnetic resonance imaging: development and retrospective validation of MRNet." PLoS medicine 15.11 (2018): e1002699.
-
-## **Dependencies/Libraries**
-
-To install all necessary dependencies, you can run:
-
-```bash
-pip install torch torchvision torchmetrics pandas pillow matplotlib numpy scipy tqdm scikit-learn torchio
-```
-## **Required Libraries:**
-- **Python**: Ensure you have Python 3.x installed.
-- **PyTorch**: The core library for building and training deep learning models.
-- **TorchVision**: A package that provides datasets, models, and transformations specific to computer vision tasks.
-- **TorchMetrics**: Provides a set of metrics for evaluating models, including FID and Inception Score.
-- **Pandas**: For handling data in CSV files and DataFrames.
-- **Pillow**: A library for opening, manipulating, and saving many different image file formats.
-- **Matplotlib**: A library for creating static, animated, and interactive visualizations in Python.
-- **NumPy**: For numerical computing, handling arrays, and performing mathematical operations.
-- **SciPy**: Used for scientific and technical computing, including entropy calculations and matrix operations.
-- **Tqdm**: A library for adding progress bars to loops.
-- **Scikit-learn**: For calculating pairwise distances and other machine learning utilities.
-- **TorchIO** (optional based on imports): A library for medical image preprocessing and augmentation.
-
-## **Usage**
-This project includes multiple Jupyter notebooks, each designed for a specific purpose, such as loading datasets, training models, and generating synthetic images. To get started, you can run the `Pipelinemain_MRNet.ipynb` notebook, which guides you through importing and running the model for image generation.
 
 ## **Models and Architectures**
 
@@ -74,6 +50,36 @@ This model follows the same cascaded approach but excludes the Swin Transformer 
 - **DDPM without SWIN**
 - **DDPM 256x256**
 There are a total of three models in discussion the SRDDPM, SRDDPM without SWIN and 256x256DDPM
+
+## **Libraries used in the Project:**
+- **Python**: Ensure you have Python 3.x installed.
+- **PyTorch**: The core library for building and training deep learning models.
+- **TorchVision**: A package that provides datasets, models, and transformations specific to computer vision tasks.
+- **TorchMetrics**: Provides a set of metrics for evaluating models, including FID and Inception Score.
+- **Pandas**: For handling data in CSV files and DataFrames.
+- **Pillow**: A library for opening, manipulating, and saving many different image file formats.
+- **Matplotlib**: A library for creating static, animated, and interactive visualizations in Python.
+- **NumPy**: For numerical computing, handling arrays, and performing mathematical operations.
+- **SciPy**: Used for scientific and technical computing, including entropy calculations and matrix operations.
+- **Tqdm**: A library for adding progress bars to loops.
+- **Scikit-learn**: For calculating pairwise distances and other machine learning utilities.
+- **TorchIO** (optional based on imports): A library for medical image preprocessing and augmentation.
+- **OpenCV (cv2)**: Used for Lanczos, Bicubic, and Bilinear interpolation.
+- **image-similarity-measures**: Used for calculating FSIM and other image similarity metrics.
+
+To install all necessary dependencies, you can run:
+```bash
+pip install torch torchvision torchmetrics pandas pillow matplotlib numpy scipy tqdm scikit-learn torchio opencv-python image-similarity-measures
+```
+
+## **Usage/Generate images with the Model**
+This project includes multiple Jupyter notebooks, each designed for a specific purpose, such as loading datasets, training models, and generating synthetic images. To get started, you can run the `Pipelinemain_MRNet.ipynb` notebook, which guides you through importing and running the model for image generation.
+**Running the Pipeline**
+To run the pipeline, you will need to install the required dependencies. You can do this by running the following command:
+```bash
+pip install torch torchvision pandas pillow matplotlib numpy scipy tqdm
+```
+
 ## **Project Structure**
 The project is organized as follows:
 
@@ -96,14 +102,67 @@ The project is organized as follows:
 All models were trained using an NVIDIA A100 GPU with 40 GB VRAM. 
 
 ## **Examples**
+
 ### **Generated Images Comparison**
-![Generated Image](images/generated_image.png)
+
+#### **Model 1: SRDDPM with Swin Transformer**
+<div align="center">
+  <img src="images/srddpm_swin_img1.png" alt="SRDDPM with Swin Transformer - Image 1" width="30%">
+  <img src="images/srddpm_swin_img2.png" alt="SRDDPM with Swin Transformer - Image 2" width="30%">
+  <img src="images/srddpm_swin_img3.png" alt="SRDDPM with Swin Transformer - Image 3" width="30%">
+</div>
+
+#### **Model 2: SRDDPM without Swin Transformer**
+<div align="center">
+  <img src="images/srddpm_noswin_img1.png" alt="SRDDPM without Swin Transformer - Image 1" width="30%">
+  <img src="images/srddpm_noswin_img2.png" alt="SRDDPM without Swin Transformer - Image 2" width="30%">
+  <img src="images/srddpm_noswin_img3.png" alt="SRDDPM without Swin Transformer - Image 3" width="30%">
+</div>
+
+#### **Model 3: Single-Stage 256x256 DDPM**
+<div align="center">
+  <img src="images/ddpm_256_img1.png" alt="Single-Stage 256x256 DDPM - Image 1" width="30%">
+  <img src="images/ddpm_256_img2.png" alt="Single-Stage 256x256 DDPM - Image 2" width="30%">
+  <img src="images/ddpm_256_img3.png" alt="Single-Stage 256x256 DDPM - Image 3" width="30%">
+</div>
+
+### **Super-Resolution Images Comparison between SWIN incorporated / no SWIN and interpolation methods**
+#### **Upscaled Image 128x128 (SR1 with SWIN)**
+![Upscaled Image 128x128](images/upscaled_128x128.png)
+#### **Upscaled Image 256x256 (SR2 with SWIN)**
+![Upscaled Image 256x256](images/upscaled_256x256.png)
+#### **Interpolation Method Comparison**
+![Interpolation Comparison Image](images/interpolation_comparison.png)
+
+
+
 
 ## **References**
-- **DDPM Implementation**: Adapted from [DDPM by Jonathan Ho](https://github.com/hojonathanho/diffusion/tree/master).
-- **Swin Transformer**: Refer to the paper [Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030).
+- **DDPM Implementation**: Adapted from Ho, Jonathan, Ajay Jain, and Pieter Abbeel. "Denoising diffusion probabilistic models." Advances in neural information processing systems 33 (2020): 6840-6851. [DDPM by Jonathan Ho](https://github.com/hojonathanho/diffusion/tree/master).
+- **Swin Transformer**: Refer to Liu, Ze, et al. "Swin transformer: Hierarchical vision transformer using shifted windows." Proceedings of the IEEE/CVF international conference on computer vision. 2021. [Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030).
+- **2D Medical Image Synthesis using transformer based DDPM**: Pan, Shaoyan, et al. "2D medical image synthesis using transformer-based denoising diffusion probabilistic model." Physics in Medicine & Biology 68.10 (2023): 105004.
+- **GH-DDPM**: Zhang, Sicheng, et al. "GH-DDM: the generalized hybrid denoising diffusion model for medical image generation." Multimedia Systems 29.3 (2023): 1335-1345.
+- **Super-Resolution of Brain MRI Images**: Wu, Zhanxiong, et al. "Super-resolution of brain MRI images based on denoising diffusion probabilistic model." Biomedical Signal Processing and Control 85 (2023): 104901.
+
 
 ## **Abbreviations**
-- **SR**: Super-resolution
 - **DDPM**: Denoising Diffusion Probabilistic Model
+- **SRDDPM**: Super-Resolution Denoising Diffusion Probabilistic Model
+- **UNet**: U-Net (a U-shaped convolutional neural network architecture)
+- **SWIN**: Shifted Window Transformer
+- **VAE**: Variational Autoencoder
+- **GAN**: Generative Adversarial Network
+- **VQVAE**: Vector Quantized Variational Autoencoder
+- **SR1**: Super-Resolution Model 1 (64x64 to 128x128 upscaling Model)
+- **SR2**: Super-Resolution Model 2 (128x128 to 256x256 upscaling Model)
+- **MSE**: Mean Squared Error
+- **SSIM**: Structural Similarity Index Measure
+- **FSIM**: Feature Similarity Index Measure
+- **PSNR**: Peak Signal-to-Noise Ratio
+- **LPIPS**: Learned Perceptual Image Patch Similarity
+- **AG**: Average Gradient
+- **VIF**: Visual Information Fidelity
+- **FID**: Frechet Inception Distance
+- **IS**: Inception Score
 - **NOSWIN**: Without SWIN transformer
+
