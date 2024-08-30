@@ -59,7 +59,7 @@ Furthermore, this project includes a comprehensive comparison of the performance
 - **FID (Frechet Inception Distance):** Measures the distance between the distributions of generated and real images, with lower values indicating that the generated images are closer to the real data.
 - **IS (Inception Score):** Assesses both the quality and diversity of the generated images. Higher IS values indicate that the generated images are both diverse and recognizable.
 
-### **Evaluation Summary**
+### **Results**
 
 #### **Phase 1: Super-Resolution Model Evaluation**
 
@@ -73,7 +73,6 @@ The **Cascaded SR model with Swin Transformer** excelled in image quality, achie
 
 The **SRDDPM with Swin Transformer** demonstrated strong structural refinement (FID: 85.9790, IS: 1.7970 ± 0.06) but required 9 hours of training. The **Single-Stage 256x256 DDPM** outperformed the SRDDPM in FID (61.9056) and IS (1.9876 ± 0.2776), producing sharper, more detailed images, though at the cost of greater computational resources (8 hours). The **SRDDPM without Swin Transformer** showed the weakest performance, with a higher FID (166.7589) and noisier images, requiring 5 hours of training, which highlights the Swin Transformer's importance in achieving higher-quality outputs.
 
-#### **Conclusion**
 
 While the Single-Stage DDPM leads in image quality, the SRDDPM with Swin Transformer offers scalability and versatility, making it a promising candidate for medical imaging tasks. With further enhancements, such as advanced attention mechanisms, the SRDDPM could potentially surpass the Single-Stage DDPM in overall performance, balancing quality with computational efficiency.
 
@@ -101,7 +100,7 @@ pip install torch torchvision torchmetrics pandas pillow matplotlib numpy scipy 
 ```
 
 ## **Usage/Generate Images with the Model**
-This project includes multiple Jupyter notebooks, each designed for a specific purpose, such as loading datasets, training models, and generating synthetic images. To get started, you can run the `Pipelinemain_MRNet.ipynb` notebook, which guides you through importing and running the model for image generation.
+This project includes multiple Jupyter notebooks, each designed for a specific purpose, such as loading datasets, training models, and generating synthetic images. To get started, you can run the `Pipelinemain_MRNet.ipynb` notebook, which guides you through importing saved model checkpoints and running the model for image generation.
 
 **Running the Pipeline**
 
@@ -110,6 +109,8 @@ To run the pipeline, you will need to install the required dependencies. You can
 ```bash
 pip install torch torchvision pandas pillow matplotlib numpy scipy tqdm
 ```
+
+After installing you can run the `Pipelinemain_MRNet.ipynb` notebook
 
 ## **Project Structure**
 The project is organized as follows:
@@ -130,7 +131,7 @@ The project is organized as follows:
   - `Pipelinemain_MRNet.ipynb`: Main pipeline notebook for loading saved models and generating images.
 
 ## **Training Information**
-All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by University of Birmingham BlueBEAR. 
+All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by the University of Birmingham BlueBEAR. 
 
 ## **Examples**
 
@@ -158,13 +159,10 @@ All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by Uni
 </div>
 
 ### **Super-Resolution Images Comparison between SWIN incorporated / no SWIN and interpolation methods**
-#### **Upscaled Image 128x128 (SR1 with SWIN)**
+#### **Model with SWIN and interpolation methods**
 ![Upscaled Image 128x128](images/upscaled_128x128.png)
-#### **Upscaled Image 256x256 (SR2 with SWIN)**
+#### **Model without SWIN and interpolation methods**
 ![Upscaled Image 256x256](images/upscaled_256x256.png)
-#### **Interpolation Method Comparison**
-![Interpolation Comparison Image](images/interpolation_comparison.png)
-
 
 
 
