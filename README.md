@@ -179,11 +179,13 @@ All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by the
 ## **References**
 - **DDPM Implementation**: Adapted from Ho, Jonathan, Ajay Jain, and Pieter Abbeel. "Denoising diffusion probabilistic models." Advances in neural information processing systems 33 (2020): 6840-6851. [DDPM by Jonathan Ho](https://github.com/hojonathanho/diffusion/tree/master).
   
-- **Swin Transformer**: Refer to Liu, Ze, et al. "Swin transformer: Hierarchical vision transformer using shifted windows." Proceedings of the IEEE/CVF international conference on computer vision. 2021. [Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030).
+
+- **GH-DDPM**: Zhang, Sicheng, et al. "GH-DDM: the generalized hybrid denoising diffusion model for medical image generation." Multimedia Systems 29.3 (2023): 1335-1345. [GH-DDPM](https://link.springer.com/article/10.1007/s00530-023-01059-0).
 
 - **2D Medical Image Synthesis using Transformer-based DDPM**: Pan, Shaoyan, et al. "2D medical image synthesis using transformer-based denoising diffusion probabilistic model." Physics in Medicine & Biology 68.10 (2023): 105004. [2D Medical Denoising Diffusion Probabilistic Model Implementation](https://github.com/shaoyanpan/2D-Medical-Denoising-Diffusion-Probabilistic-Model-/tree/main).
 
-- **GH-DDPM**: Zhang, Sicheng, et al. "GH-DDM: the generalized hybrid denoising diffusion model for medical image generation." Multimedia Systems 29.3 (2023): 1335-1345. [GH-DDPM](https://link.springer.com/article/10.1007/s00530-023-01059-0).
+- **Swin Transformer**: Refer to Liu, Ze, et al. "Swin transformer: Hierarchical vision transformer using shifted windows." Proceedings of the IEEE/CVF international conference on computer vision. 2021. [Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030).
+
 
 - **Super-Resolution of Brain MRI Images**: Wu, Zhanxiong, et al. "Super-resolution of brain MRI images based on denoising diffusion probabilistic model." Biomedical Signal Processing and Control 85 (2023): 104901. [Super-Resolution of Brain MRI Images](https://www.sciencedirect.com/science/article/pii/S1746809423003348).
 
