@@ -63,13 +63,14 @@ Furthermore, this project includes a comprehensive comparison of the performance
 
 #### **Phase 1: Super-Resolution Model Evaluation**
 
-![Phase 1 Evaluation](ReadmeImages/Screenshot%202024-08-31%20053601.png)
+<img src="ReadmeImages/Screenshot%202024-08-31%20053601.png" alt="Phase 1 Evaluation" width="50%">
 
 The **Cascaded SR model with Swin Transformer** excelled in image quality, achieving the highest PSNR (27.1742) and superior edge preservation (AG: 0.2634) compared to other models. Its perceptual quality, indicated by a low LPIPS score (0.1753), was also strong, though it required the longest training time (6 hours). The **Cascaded SR model without Swin Transformer** performed well with a slightly higher PSNR (27.6868) but showed reduced perceptual accuracy, making it more computationally efficient with only 3 hours of training. **Bicubic and Lanczos interpolation methods** were effective in preserving fine details but fell short in overall structural and perceptual accuracy compared to the SR models.
 
 #### **Phase 2: Generative Model Evaluation**
 
-![Phase 2 Evaluation](ReadmeImages/Screenshot%202024-08-31%20053758.png)
+<img src="ReadmeImages/Screenshot%202024-08-31%20053758.png" alt="Phase 2 Evaluation" width="50%">
+
 
 The **SRDDPM with Swin Transformer** demonstrated strong structural refinement (FID: 85.9790, IS: 1.7970 ± 0.06) but required 9 hours of training. The **Single-Stage 256x256 DDPM** outperformed the SRDDPM in FID (61.9056) and IS (1.9876 ± 0.2776), producing sharper, more detailed images, though at the cost of greater computational resources (8 hours). The **SRDDPM without Swin Transformer** showed the weakest performance, with a higher FID (166.7589) and noisier images, requiring 5 hours of training, which highlights the Swin Transformer's importance in achieving higher-quality outputs.
 
