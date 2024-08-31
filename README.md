@@ -97,17 +97,6 @@ The project is organized as follows:
   - `Pipelinemain_MRNet.ipynb`: Main pipeline notebook for loading saved models and generating images.
 The project files in its entirity is available on Google drive (). Please access this drive link to download Model_Savepoints
 
-## **Code Repository**
-The code for the entire project can be found at [https://git.cs.bham.ac.uk/projects-2023-24/avv306](https://git.cs.bham.ac.uk/projects-2023-24/avv306).
-
-### **Steps to Clone the Repository**
-To clone the repository, use the following command:
-
-```bash
-git clone https://git.cs.bham.ac.uk/projects-2023-24/avv306.git
-```
-
-
 
 ## **Libraries used in the Project:**
 - **Python**: Ensure you have Python 3.x installed.
@@ -140,8 +129,15 @@ To run the pipeline, you will need to install the required dependencies. You can
 ```bash
 pip install torch torchvision pandas pillow matplotlib numpy scipy tqdm
 ```
+### **Steps to Clone the Repository**
+To clone the repository, use the following command:
 
-After installing the dependencies, you will need to download the Model_Savepoints from Google Drive [[link](https://drive.google.com/drive/folders/1Cs0nqGfp2nUlDqVTtuk-3TMsyR7FkWF5?usp=sharing)]. Place this folder in the same directory as the project files. Once done, you can run the `Pipelinemain_MRNet.ipynb` notebook.
+```bash
+git clone https://git.cs.bham.ac.uk/projects-2023-24/avv306.git
+```
+
+
+After cloning the REPO and installing the dependencies, you will need to download the Model_Savepoints from Google Drive [[link](https://drive.google.com/drive/folders/1Cs0nqGfp2nUlDqVTtuk-3TMsyR7FkWF5?usp=sharing)]. Place this folder in the same directory as the project files. Once done, you can run the `Pipelinemain_MRNet.ipynb` notebook.
 
 
 ## **Training Information**
