@@ -139,30 +139,30 @@ All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by the
 
 #### **Model 1: SRDDPM with Swin Transformer**
 <div align="center">
-  <img src="images/srddpm_swin_img1.png" alt="SRDDPM with Swin Transformer - Image 1" width="30%">
-  <img src="images/srddpm_swin_img2.png" alt="SRDDPM with Swin Transformer - Image 2" width="30%">
-  <img src="images/srddpm_swin_img3.png" alt="SRDDPM with Swin Transformer - Image 3" width="30%">
+  <img src="Evaluation_code/Generated Images/Cascaded_SR/image_101_256.png" alt="SRDDPM with Swin Transformer - Image 1" width="30%">
+  <img src="Evaluation_code/Generated Images/Cascaded_SR/image_130_256.png" alt="SRDDPM with Swin Transformer - Image 2" width="30%">
+  <img src="Evaluation_code/Generated Images/Cascaded_SR/image_148_256.png" alt="SRDDPM with Swin Transformer - Image 3" width="30%">
 </div>
 
 #### **Model 2: SRDDPM without Swin Transformer**
 <div align="center">
-  <img src="images/srddpm_noswin_img1.png" alt="SRDDPM without Swin Transformer - Image 1" width="30%">
-  <img src="images/srddpm_noswin_img2.png" alt="SRDDPM without Swin Transformer - Image 2" width="30%">
-  <img src="images/srddpm_noswin_img3.png" alt="SRDDPM without Swin Transformer - Image 3" width="30%">
+  <img src="Evaluation_code/Generated Images/CascadedNOSWIN_SR/image_10_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 1" width="30%">
+  <img src="Evaluation_code/Generated Images/CascadedNOSWIN_SR/image_102_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 2" width="30%">
+  <img src="Evaluation_code/Generated Images/CascadedNOSWIN_SR/image_13_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 3" width="30%">
 </div>
 
 #### **Model 3: Single-Stage 256x256 DDPM**
 <div align="center">
-  <img src="images/ddpm_256_img1.png" alt="Single-Stage 256x256 DDPM - Image 1" width="30%">
-  <img src="images/ddpm_256_img2.png" alt="Single-Stage 256x256 DDPM - Image 2" width="30%">
-  <img src="images/ddpm_256_img3.png" alt="Single-Stage 256x256 DDPM - Image 3" width="30%">
+  <img src="Evaluation_code/Generated Images/DDPM_256x256/generated_image_120.png" alt="Single-Stage 256x256 DDPM - Image 1" width="30%">
+  <img src="Evaluation_code/Generated Images/DDPM_256x256/generated_image_10.png" alt="Single-Stage 256x256 DDPM - Image 2" width="30%">
+  <img src="Evaluation_code/Generated Images/DDPM_256x256/generated_image_127.png" alt="Single-Stage 256x256 DDPM - Image 3" width="30%">
 </div>
 
 ### **Super-Resolution Images Comparison between SWIN incorporated / no SWIN and interpolation methods**
 #### **Model with SWIN and interpolation methods**
-![Upscaled Image 128x128](images/upscaled_128x128.png)
+![Upscaled Image 128x128](Evaluation_code/Generated Images/SRComparison.png)
 #### **Model without SWIN and interpolation methods**
-![Upscaled Image 256x256](images/upscaled_256x256.png)
+![Upscaled Image 256x256](Evaluation_code/Generated Images/SRNOSWINComparison.png)
 
 
 
