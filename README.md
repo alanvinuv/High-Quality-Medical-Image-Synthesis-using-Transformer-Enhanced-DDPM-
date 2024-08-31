@@ -22,17 +22,17 @@ Furthermore, this project includes a comprehensive comparison of the performance
    - **64x64 Image Generator (Base DDPM):** 
      This model uses a UNet architecture with sinusoidal positional embeddings, self-attention, and cross-attention mechanisms to generate 64x64 images from noise. The Swin Transformer is integrated into the bottleneck layer to capture both local and global dependencies.
      
-     ![UNet for 64x64 Generator](images/unet_64x64.png)
+     ![UNet for 64x64 Generator](ReadmeImages/Screenshot%202024-08-28%20235416.png)
      
    - **Super-Resolution UNet (SR1 and SR2):** 
      The SR1 model upscales images from 64x64 to 128x128, and the SR2 model further upscales them to 256x256. These models do not include self-attention or cross-attention layers but have the Swin Transformer in the Bottleneck of UNet to refine image details effectively.
 
-     ![Super-Resolution UNet](images/sr_unet.png)
+     ![Super-Resolution UNet](ReadmeImages/Screenshot%202024-08-28%20235631.png)
 
    - **Pipeline Overview:** 
      The following image depicts the overall pipeline of the proposed Cascaded Super-Resolution DDPM. It starts with the base DDPM generating low-resolution images, which are progressively upscaled using the SR1 and SR2 models.
 
-     ![Proposed Architecture Pipeline](images/pipeline.png)
+     ![Proposed Architecture Pipeline](ReadmeImages/Screenshot%202024-08-28%20235552.png)
 
 2. **SRDDPM Without Swin Transformer**
    - This model follows the same cascaded approach but excludes the Swin Transformer from the architecture, reducing computational complexity while still performing the image upscaling tasks.
@@ -63,13 +63,13 @@ Furthermore, this project includes a comprehensive comparison of the performance
 
 #### **Phase 1: Super-Resolution Model Evaluation**
 
-![Phase 1 Evaluation](path_to_phase_1_image.png)
+![Phase 1 Evaluation](ReadmeImages/Screenshot%202024-08-31%20053601.png)
 
 The **Cascaded SR model with Swin Transformer** excelled in image quality, achieving the highest PSNR (27.1742) and superior edge preservation (AG: 0.2634) compared to other models. Its perceptual quality, indicated by a low LPIPS score (0.1753), was also strong, though it required the longest training time (6 hours). The **Cascaded SR model without Swin Transformer** performed well with a slightly higher PSNR (27.6868) but showed reduced perceptual accuracy, making it more computationally efficient with only 3 hours of training. **Bicubic and Lanczos interpolation methods** were effective in preserving fine details but fell short in overall structural and perceptual accuracy compared to the SR models.
 
 #### **Phase 2: Generative Model Evaluation**
 
-![Phase 2 Evaluation](path_to_phase_2_image.png)
+![Phase 2 Evaluation](ReadmeImages/Screenshot%202024-08-31%20053758.png)
 
 The **SRDDPM with Swin Transformer** demonstrated strong structural refinement (FID: 85.9790, IS: 1.7970 ± 0.06) but required 9 hours of training. The **Single-Stage 256x256 DDPM** outperformed the SRDDPM in FID (61.9056) and IS (1.9876 ± 0.2776), producing sharper, more detailed images, though at the cost of greater computational resources (8 hours). The **SRDDPM without Swin Transformer** showed the weakest performance, with a higher FID (166.7589) and noisier images, requiring 5 hours of training, which highlights the Swin Transformer's importance in achieving higher-quality outputs.
 
@@ -146,23 +146,23 @@ All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by the
 
 #### **Model 2: SRDDPM without Swin Transformer**
 <div align="center">
-  <img src="Evaluation_code/Generated Images/CascadedNOSWIN_SR/image_10_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 1" width="30%">
-  <img src="Evaluation_code/Generated Images/CascadedNOSWIN_SR/image_102_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 2" width="30%">
-  <img src="Evaluation_code/Generated Images/CascadedNOSWIN_SR/image_13_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 3" width="30%">
+  <img src="ReadmeImages/image_10_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 1" width="30%">
+  <img src="ReadmeImages/image_102_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 2" width="30%">
+  <img src="ReadmeImages/image_13_256x256_0.png" alt="SRDDPM without Swin Transformer - Image 3" width="30%">
 </div>
 
 #### **Model 3: Single-Stage 256x256 DDPM**
 <div align="center">
-  <img src="Evaluation_code/Generated Images/DDPM_256x256/generated_image_120.png" alt="Single-Stage 256x256 DDPM - Image 1" width="30%">
-  <img src="Evaluation_code/Generated Images/DDPM_256x256/generated_image_10.png" alt="Single-Stage 256x256 DDPM - Image 2" width="30%">
-  <img src="Evaluation_code/Generated Images/DDPM_256x256/generated_image_127.png" alt="Single-Stage 256x256 DDPM - Image 3" width="30%">
+  <img src="ReadmeImages/generated_image_120.png" alt="Single-Stage 256x256 DDPM - Image 1" width="30%">
+  <img src="ReadmeImages/generated_image_10.png" alt="Single-Stage 256x256 DDPM - Image 2" width="30%">
+  <img src="ReadmeImages/generated_image_127.png" alt="Single-Stage 256x256 DDPM - Image 3" width="30%">
 </div>
 
 ### **Super-Resolution Images Comparison between SWIN incorporated / no SWIN and interpolation methods**
 #### **Model with SWIN and interpolation methods**
-![Upscaled Image 128x128](Evaluation_code/Generated Images/SRComparison.png)
+![Upscaled Image 128x128](ReadmeImages/SRComparison.png)
 #### **Model without SWIN and interpolation methods**
-![Upscaled Image 256x256](Evaluation_code/Generated Images/SRNOSWINComparison.png)
+![Upscaled Image 256x256](ReadmeImages/SRNOSWINComparison.png)
 
 
 
