@@ -23,12 +23,12 @@ Furthermore, this project includes a comprehensive comparison of the performance
      This model uses a UNet architecture with sinusoidal positional embeddings, self-attention, and cross-attention mechanisms to generate 64x64 images from noise. The Swin Transformer is integrated into the bottleneck layer to capture both local and global dependencies.
      
     
-     <img src="ReadmeImages/Screenshot%202024-08-28%20235416.png" alt="UNet for 64x64 Generator" width="20%">
+     <img src="ReadmeImages/Screenshot%202024-08-28%20235416.png" alt="UNet for 64x64 Generator" width="40%">
      
    - **Super-Resolution UNet (SR1 and SR2):** 
      The SR1 model upscales images from 64x64 to 128x128, and the SR2 model further upscales them to 256x256. These models do not include self-attention or cross-attention layers but have the Swin Transformer in the Bottleneck of UNet to refine image details effectively.
 
-     <img src="ReadmeImages/Screenshot%202024-08-28%20235631.png" alt="Super-Resolution UNet" width="20%">
+     <img src="ReadmeImages/Screenshot%202024-08-28%20235631.png" alt="Super-Resolution UNet" width="40%">
    - **Pipeline Overview:** 
      The following image depicts the overall pipeline of the proposed Cascaded Super-Resolution DDPM. It starts with the base DDPM generating low-resolution images, which are progressively upscaled using the SR1 and SR2 models.
 
