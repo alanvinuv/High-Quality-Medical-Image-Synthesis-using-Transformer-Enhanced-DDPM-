@@ -169,12 +169,10 @@ All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by the
 </div>
 
 ### **Super-Resolution Images Comparison between SWIN incorporated / no SWIN and interpolation methods**
-
 #### **Model with SWIN and interpolation methods**
-<img src="ReadmeImages/SRComparison.png" alt="Model with SWIN and interpolation method" width="100%">
-
+![Model with SWIN and interpolation method](ReadmeImages/SRComparison.png)
 #### **Model without SWIN and interpolation methods**
-<img src="ReadmeImages/SRNOSWINComparison.png" alt="Model without SWIN and interpolation methods" width="100%">
+![Model without SWIN and interpolation methods](ReadmeImages/SRNOSWINComparison.png)
 
 
 
