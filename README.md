@@ -136,6 +136,7 @@ All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by the
 ## **Examples**
 
 ### **Generated Images Comparison**
+<img src="Evaluation_code/Generated Images/DDPM_256x256/generated_image_127.png">
 
 #### **Model 1: SRDDPM with Swin Transformer**
 <div align="center">
