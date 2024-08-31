@@ -22,18 +22,18 @@ Furthermore, this project includes a comprehensive comparison of the performance
    - **64x64 Image Generator (Base DDPM):** 
      This model uses a UNet architecture with sinusoidal positional embeddings, self-attention, and cross-attention mechanisms to generate 64x64 images from noise. The Swin Transformer is integrated into the bottleneck layer to capture both local and global dependencies.
      
-     ![UNet for 64x64 Generator](ReadmeImages/Screenshot%202024-08-28%20235416.png)
+    
+     <img src="ReadmeImages/Screenshot%202024-08-28%20235416.png" alt="UNet for 64x64 Generator" width="50%">
      
    - **Super-Resolution UNet (SR1 and SR2):** 
      The SR1 model upscales images from 64x64 to 128x128, and the SR2 model further upscales them to 256x256. These models do not include self-attention or cross-attention layers but have the Swin Transformer in the Bottleneck of UNet to refine image details effectively.
 
-     ![Super-Resolution UNet](ReadmeImages/Screenshot%202024-08-28%20235631.png)
-
+     <img src="ReadmeImages/Screenshot%202024-08-28%20235631.png" alt="Super-Resolution UNet" width="50%">
    - **Pipeline Overview:** 
      The following image depicts the overall pipeline of the proposed Cascaded Super-Resolution DDPM. It starts with the base DDPM generating low-resolution images, which are progressively upscaled using the SR1 and SR2 models.
 
      ![Proposed Architecture Pipeline](ReadmeImages/Screenshot%202024-08-28%20235552.png)
-
+      <img src="ReadmeImages/Screenshot%202024-08-28%20235552.png" alt="Proposed Architecture Pipeline" width="50%">
 2. **SRDDPM Without Swin Transformer**
    - This model follows the same cascaded approach but excludes the Swin Transformer from the architecture, reducing computational complexity while still performing the image upscaling tasks.
 
@@ -63,7 +63,7 @@ Furthermore, this project includes a comprehensive comparison of the performance
 
 #### **Phase 1: Super-Resolution Model Evaluation**
 
-<img src="ReadmeImages/Screenshot%202024-08-31%20053601.png" alt="Phase 1 Evaluation" width="50%">
+<img src="ReadmeImages/Screenshot%202024-08-31%20053601.png" alt="Phase 1 Evaluation" width="70%">
 
 The **Cascaded SR model with Swin Transformer** excelled in image quality, achieving the highest PSNR (27.1742) and superior edge preservation (AG: 0.2634) compared to other models. Its perceptual quality, indicated by a low LPIPS score (0.1753), was also strong, though it required the longest training time (6 hours). The **Cascaded SR model without Swin Transformer** performed well with a slightly higher PSNR (27.6868) but showed reduced perceptual accuracy, making it more computationally efficient with only 3 hours of training. **Bicubic and Lanczos interpolation methods** were effective in preserving fine details but fell short in overall structural and perceptual accuracy compared to the SR models.
 
