@@ -139,9 +139,9 @@ All models were trained using an NVIDIA A100 GPU with 40 GB VRAM provided by the
 
 #### **Model 1: SRDDPM with Swin Transformer**
 <div align="center">
-  <img src="img1.png" alt="SRDDPM with Swin Transformer - Image 1" width="30%">
-  <img src="Evaluation_code/Generated Images/Cascaded_SR/image_130_256.png" alt="SRDDPM with Swin Transformer - Image 2" width="30%">
-  <img src="Evaluation_code/Generated Images/Cascaded_SR/image_148_256.png" alt="SRDDPM with Swin Transformer - Image 3" width="30%">
+  <img src="ReadmeImages/image_101_256.png" alt="SRDDPM with Swin Transformer - Image 1" width="30%">
+  <img src="ReadmeImages/image_130_256.png" alt="SRDDPM with Swin Transformer - Image 2" width="30%">
+  <img src="ReadmeImages/image_148_256.png" alt="SRDDPM with Swin Transformer - Image 3" width="30%">
 </div>
 
 #### **Model 2: SRDDPM without Swin Transformer**
